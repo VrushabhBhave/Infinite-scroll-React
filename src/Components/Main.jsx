@@ -47,12 +47,12 @@ function Main({ images, loading }) {
           modalVisibility ? "visible" : "invisible"
         }`}
       >
-        <div className="dialog-box w-[90%] bg-white p-6 rounded-2xl fixed top-25 h-[80%]">
+        <div className="dialog-box w-[90%] bg-[#f2ede7] p-6 rounded-2xl fixed top-25 h-[80%] overflow-auto">
           <div className="close relative" onClick={closeSinglePageInfo}>
             <span className="absolute right-1 text-2xl cursor-pointer">x</span>
           </div>
-          <div className="content flex w-[100%] h-[100%]">
-            <div className="left w-[50%] h-[100%] rounded-l-2xl">
+          <div className="content flex flex-col sm:flex-row w-[100%] h-[100%]">
+            <div className="left w-[100%] h-[50%] sm:w-[50%] sm:h-[100%] rounded-l-2xl">
               {singleImageInfo?.urls?.full ? (
                 <img
                   src={singleImageInfo?.urls.full}
@@ -62,15 +62,16 @@ function Main({ images, loading }) {
                 <p>Loading...</p>
               )}
             </div>
-            <div className="right h-[100%] w-[50%] py-2 pl-10">
+            <div className="right h-[50%] w-[100%] sm:h-[100%] sm:w-[50%] py-2 pl-0 sm:pl-10 mt-10">
               {singleImageInfo?.urls?.full ? (
                 <>
-                    <h1 className="text-2xl font-bold mb-1">{`Uploaded By: ${singleImageInfo?.user.name} (@${singleImageInfo?.user.id})`}</h1>
-                    <h2 className="text-xl font-medium mb-5">Upload Date: {singleImageInfo.created_at}</h2>
+                    <h1 className="text-lg sm:text-xl lg:text-2xl font-bold mb-1">{`Uploaded By: ${singleImageInfo?.user.name} (@${singleImageInfo?.user.id})`}</h1>
+                    <h2 className="text-lg lg:text-xl font-medium mb-5">Upload Date: {singleImageInfo.created_at}</h2>
                     <hr/>
                     <p className="mt-7 mb-1 font-bold ">Width: {singleImageInfo.width}</p>
                     <p className="mb-5 font-bold">Height: {singleImageInfo.height}</p>
                     <hr />
+                    <button type="button" className="bg-[#c0a68c] text-white mt-10 py-2 rounded-lg"><a href={singleImageInfo?.links.download} className="p-3" target="_blank">Download</a></button>
                 </>
               ) : (
                 <p>Loading...</p>
